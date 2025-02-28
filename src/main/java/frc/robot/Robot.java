@@ -21,7 +21,6 @@ import frc.lib.RobotInstance;
 import frc.lib.eventLoops.EventLoops;
 import frc.lib.faults.Fault;
 import frc.robot.Robot24.RobotContainer;
-import frc.robot.boxybot.BoxysRobotContainer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -58,9 +57,7 @@ public class Robot extends TimedRobot {
 
     robotContainer = (RobotContainerInterface) RobotInstance.config((instance) -> {
       return switch (instance) {
-        case BoxyBot -> new BoxysRobotContainer();
         case Robot24 -> new frc.robot.Robot24.RobotContainer();
-        case KrackenSwerve -> new frc.robot.KrackenSwerve.RobotContainer();
       };
     });
     Shuffleboard.getTab("Scheduler").add("Scheduler", CommandScheduler.getInstance()).withSize(3, 2);
