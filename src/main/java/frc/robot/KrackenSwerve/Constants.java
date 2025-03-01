@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.Robot24;
+package frc.robot.KrackenSwerve;
 
 import static edu.wpi.first.units.Units.Degree;
 
@@ -26,46 +26,19 @@ public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
     public static final int kOperatorControllerPort = 1;
-    public static final int kTestControllerPort = 2;
   }
-
-  public static class LEDS {
-    public static final int LEFT = 1;
-    public static final int RIGHT = 2;
-  }
-
-  public static final boolean isGraphsEnabled = false;
 
   public static class DriveTrain {
-    public static final Angle frontLeftOffset = Degree.of(37.96);
+    private static Angle ofset = Degree.of(180);
+    public static final Angle frontLeftOffset = Degree.of(259.94).plus(ofset);
 
-    public static final Angle  frontrightoffset = Degree.of(309.46);
+    public static final Angle  frontrightoffset = Degree.of(121.41).plus(ofset);
 
-    public static final Angle backleftoffset = Degree.of(254.53);
+    public static final Angle backleftoffset = Degree.of(154.00).plus(ofset);
 
-    public static final Angle backrightoffset = Degree.of(358.24);
+    public static final Angle backrightoffset = Degree.of(184.74).plus(ofset);
   }
 
-  public static class Shooter {
-    public static final int id_left = 23;
-    public static final int id_right = 24;
-    public static final double gear_ratio = 30.0 / 18.0;
-  }
-
-  public static class Intake {
-    public static final int id_intake = 31;
-    public static final int id_conv = 5;
-    public static final int noteSensorId = 0;
-    public static final int bottomNoteSensorID = 1;
-  }
-
-  public static class Arm {
-    public static final int ARM_TALON_LEFT = 27;
-    public static final int ARM_TALON_RIGHT = 28;
-    public static final double ARM_GEAR_RATIO = (5.0 / 1.0) * (4.0 / 1.0) * (4.0 / 1.0) * (58.0 / 18.0);
-    public static final int coastButtonID = 9;
-    public static final int zeroSwitchID = 2;
-  }
 
   public static final class LimelightConfig {
     public static final String LEFT_NAME = "limelight-left";
