@@ -26,13 +26,11 @@ import com.ctre.phoenix6.controls.TorqueCurrentFOC;
 import com.ctre.phoenix6.controls.VelocityTorqueCurrentFOC;
 import com.ctre.phoenix6.controls.VelocityVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
-import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.ParentDevice;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.FeedbackSensorSourceValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-import com.ctre.phoenix6.signals.SensorDirectionValue;
 import com.ctre.phoenix6.swerve.SwerveModuleConstants;
 import edu.wpi.first.math.filter.Debouncer;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -45,7 +43,6 @@ import frc.lib.devices.PWMEncoder;
 import frc.robot.generated.TunerConstants;
 import java.util.Queue;
 import java.util.function.Supplier;
-
 import org.littletonrobotics.junction.Logger;
 
 /**
@@ -155,7 +152,7 @@ public class ModuleIOTalonFX implements ModuleIO {
     driveCurrent = driveTalon.getStatorCurrent();
 
     // Create turn status signals
-    turnAbsolutePosition = ()-> pwmEncoder.getPosition();
+    turnAbsolutePosition = () -> pwmEncoder.getPosition();
     turnPosition = turnTalon.getPosition();
     turnPositionQueue = PhoenixOdometryThread.getInstance().registerSignal(turnTalon.getPosition());
     turnVelocity = turnTalon.getVelocity();
@@ -183,9 +180,10 @@ public class ModuleIOTalonFX implements ModuleIO {
         BaseStatusSignal.refreshAll(drivePosition, driveVelocity, driveAppliedVolts, driveCurrent);
     var turnStatus =
         BaseStatusSignal.refreshAll(turnPosition, turnVelocity, turnAppliedVolts, turnCurrent);
-    
-    Logger.recordOutput("encoder" + constants.EncoderId + "AbsEncoderRotations",
-    pwmEncoder.getRawUnoffsettedPosition().in(Rotations));
+
+    Logger.recordOutput(
+        "encoder" + constants.EncoderId + "AbsEncoderRotations",
+        pwmEncoder.getRawUnoffsettedPosition().in(Rotations));
 
     // Update drive inputs
     inputs.driveConnected = driveConnectedDebounce.calculate(driveStatus.isOK());
